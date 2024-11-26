@@ -1,0 +1,119 @@
+group in tailwind **************
+Purpose: Applies styles to child elements based on the state of a parent element.
+Use Case: When you need to style multiple children based on the state of their shared parent.
+How It Works:--
+Add the group class to the parent element.
+Use group-* variants (e.g., group-hover, group-focus) on the child elements.
+
+Example--->
+<div class="group p-4 rounded-lg bg-gray-100 hover:bg-gray-200">
+  <h1 class="text-lg text-gray-700 group-hover:text-red-500">Hello, World!</h1>
+  <p class="text-sm text-gray-600 group-hover:text-blue-500">This is a description.</p>
+</div>
+Behavior: When the parent (group) is hovered, both the <h1> and <p> styles change.
+
+-----------------------------------------------------------------------------------------------------------
+
+peer in tailwind **************
+Purpose: Applies styles to sibling elements based on the state of an input/peer element.
+Use Case: When you need to style a sibling of an interactive element like an input, checkbox, or radio button.
+How It Works:--
+Add the peer class to the element whose state will trigger styles (e.g., an input or checkbox).
+Use peer-* variants (e.g., peer-checked, peer-focus) on sibling elements to apply conditional styles.
+
+Example--->
+<div>
+  <input type="checkbox" id="toggle" class="peer hidden">
+  <label for="toggle" class="block w-20 h-10 bg-gray-300 rounded-full peer-checked:bg-green-500"></label>
+  <p class="mt-2 text-gray-700 peer-checked:text-green-600">Checkbox is checked!</p>
+</div>
+Behavior: When the input (peer) is checked, the label and paragraph text change styles.
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <p id="demo"></p> -->
+
+    <div id="outer" style="padding: 20px; background: lightblue">
+      Outer Div
+      <div id="middle" style="padding: 20px; background: lightgreen">
+        Middle Div
+        <div id="inner" style="padding: 20px; background: lightcoral">
+          Inner Div
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const outer = document.getElementById("outer");
+      const middle = document.getElementById("middle");
+      const inner = document.getElementById("inner");
+
+      // Capturing Phase Listeners
+      outer.addEventListener("click", () => {console.log("Outer Div - Capturing Phase");}, true);
+
+      middle.addEventListener("click", () => {console.log("Middle Div - Capturing Phase");}, true);
+
+      inner.addEventListener("click", () => {console.log("Inner Div - Capturing Phase");}, true);
+
+      // Bubbling Phase Listeners
+      outer.addEventListener("click", () => {console.log("Outer Div - Bubbling Phase");});
+
+      middle.addEventListener("click", () => {console.log("Middle Div - Bubbling Phase");});
+
+      inner.addEventListener("click", () => {console.log("Inner Div - Bubbling Phase");});
+
+      //closure and lexical scoping********
+      // function makeFunc() {
+      //   const name = "Mozilla"; // Local variable
+      //   function displayName() {
+      //     console.log(name); // Accesses the outer variable
+      //   }
+      //   return displayName; // Returns the inner function
+      // }
+      // const myFunc = makeFunc(); // Call `makeFunc`, returning `displayName`
+      // myFunc(); // Executes `displayName` (logs "Mozilla")
+
+
+      // const a = 2;
+      // var aa = 3;
+
+      // {
+      //   let b = 5;
+      // }
+      // var x = 90;
+
+      // function sum() {
+      //   return function () {
+      //     console.log(x);
+      //   };
+      // }
+
+      // const val = sum();
+      // x = 80;
+      // val();
+
+      // for (let x = 1; x <= 5; x++) {
+      //   setTimeout(() => {
+      //     console.log(x);
+      //   }, 1000);
+      // }
+
+      // function add(num1) {
+      //   return function (num2) {
+      //     return function (num3) {
+      //       return num1 + num2 + num3;
+      //     }
+      //   }
+      // }
+
+      // console.log(add(5)(6)(8));
+    </script>
+  </body>
+</html>
