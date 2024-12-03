@@ -1,18 +1,44 @@
 import { useEffect, useState } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import { BsPlayFill } from "react-icons/bs";
+import PlayButton from "./PlayButton";
+import OpenModal from "./OpenModal";
 
 interface BillBoardProps {
+    movieid: string;
     thumbnailUrl: string;
     videoUrl: string;
     title: string;
     description: string;
     id: number;
+    data: {
+        id: number;
+        thumbnailUrl: string;
+        videoUrl: string;
+        title: string;
+        description: string;
+        duration?: string;
+        genre?: string;
+        movieid: string;
+        seriesid: string;
+      };
 }
 
 const BillBoard = () => {
     const [data, setData] = useState<BillBoardProps | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    const handleModalOpen = () => {
+        console.log("Opening Modal");
+        setIsOpen(true); // Toggle modal visibility
+    };
+
+    const handleModalClose = () => {
+        console.log("Closing Modal");
+        setIsOpen(false); // Close the modal
+    };
 
     useEffect(() => {
         const fetchMovie = async () => {
@@ -53,11 +79,11 @@ const BillBoard = () => {
                 <>
                     <video
                         className="w-full lg:h-[60vh] md:h-[50vh] h-[30vh] object-cover brightness-[50%]"
-                        loop 
-                        muted 
+                        loop
+                        muted
                         autoPlay
                         poster={data.thumbnailUrl}
-                        src={data.videoUrl} 
+                        src={data.videoUrl}
                     ></video>
 
                     <div className="absolute top-[30%] md:top-[40%] ml-4 md:ml-16">
@@ -66,9 +92,10 @@ const BillBoard = () => {
                         </p>
                         <p className="text-white text-[8px] md:text-lg mt-3 md:mt-8 w-[90%] md:w-[80%] lg:w-[50%] drop-shadow-xl">
                             {data.description}
-                        </p> 
+                        </p>
                         <div className="flex flex-row items-center mt-3 md:mt-4 gap-3">
-                            <button
+                            <PlayButton movieid={data.movieid} />
+                            <button onClick={handleModalOpen}
                                 className="bg-white text-white bg-opacity-30 rounded-md py-1 md:py-2 px-2 md:px-4 w-auto text-xs lg:text-lg font-semibold flex flex-row items-center hover:bg-opacity-20 transition">
                                 <AiOutlineInfoCircle className="mr-1" />
                                 More Info
@@ -77,6 +104,8 @@ const BillBoard = () => {
                     </div>
                 </>
             )}
+            <OpenModal data={data} visible={isOpen} onClose={handleModalClose} />
+
         </div>
     );
 };

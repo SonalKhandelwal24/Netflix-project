@@ -16,9 +16,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
         await connectToDatabase();
 
         const totalMovies = await MovieData.find();
-        console.log("Fetched All Movies:", totalMovies);
 
-        // Respond with the random movie
         if (totalMovies) {
             return NextResponse.json({ success: true, result: totalMovies }, { status: 200 });
         } else {

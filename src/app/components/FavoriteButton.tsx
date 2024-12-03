@@ -1,41 +1,102 @@
-import { useEffect, useState, useCallback, useMemo } from "react";
-import { AiOutlinePlus } from "react-icons/ai";
+import { useState, useEffect } from "react";
+import { AiOutlinePlus, AiOutlineCheck } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { toggleRefresh } from "../redux/slice/refreshSlice";
 
 interface FavoriteButtonProps {
-    movieid : string
+  movieid?: string;
+  seriesid?: string;
 }
-const FavoriteButton: React.FC<FavoriteButtonProps> = ({movieid}) => {
-    
-    const [favorite, setFavorite] = useState(null);
-    const [error, setError] = useState<string | null>(null);
-    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchFavoriteMovies = async () => {
-            try {
-                const response = await fetch('http://192.168.1.50:3000/api/favorites');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const favoriteList = await response.json();
-                setFavorite(favoriteList.result);
-                setError(null);
-            } catch (error: any) {
-                console.error("Error fetching movie data:", error);
-                setError(error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
+const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieid, seriesid }) => {
 
-        fetchFavoriteMovies();
-    }, []);
+  const [isFavorite, setIsFavorite] = useState<boolean | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const itemType = movieid ? "Movie" : "Series"; 
+  const dispatch = useDispatch();
 
-    return (
-        <div className="cursor-pointer group/item w-6 h-6 lg:w-10 lg:h-10 border-white border-2 rounded-full flex justify-center items-center transition hover:border-netural-300">
-            <AiOutlinePlus className="text-white" size={25} />
-        </div>
-    )
-}
+  const fetchFavoriteStatus = async () => {
+    try {
+      const response = await fetch("http://192.168.1.50:3000/api/favorite-status", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ movieid, seriesid }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch favorite status.");
+      }
+
+      const data = await response.json();
+      if (typeof data.isFavorite === "boolean") {
+        setIsFavorite(data.isFavorite); 
+      } else {
+        throw new Error("Invalid response structure from the API.");
+      }
+    } catch (error: any) {
+      console.error("Error fetching favorite status:", error.message);
+      setIsFavorite(false); 
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchFavoriteStatus();
+  }, [movieid, seriesid]);
+
+  const toggleFavorite = async () => {
+    try {
+      const method = isFavorite ? "DELETE" : "POST";
+      const response = await fetch("http://192.168.1.50:3000/api/favorite", {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ movieid, seriesid }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update favorites.");
+      }
+
+      setIsFavorite(!isFavorite);
+      toast.success(
+        `${itemType} ${!isFavorite ? "added to" : "removed from"} favorites!`,
+        { autoClose: 3000, closeOnClick: true, pauseOnHover: true }
+      );
+      dispatch(toggleRefresh());
+    } catch (error: any) {
+      console.error("Error updating favorites:", error.message);
+      toast.error(error.message || "Something went wrong!", {
+        autoClose: 3000,
+        closeOnClick: true,
+        pauseOnHover: true,
+      });
+    }
+  };
+
+  const Icon = isFavorite ? AiOutlineCheck : AiOutlinePlus;
+
+  return (
+    <>
+      <div>
+        <button
+          onClick={toggleFavorite}
+          className="cursor-pointer group/item w-6 h-6 lg:w-10 lg:h-10 border-white border-2 rounded-full flex justify-center items-center transition hover:border-neutral-300"
+          aria-label={isFavorite ? `Remove ${itemType} from favorites` : `Add ${itemType} to favorites`}
+          disabled={loading}
+        >
+          {!loading && <Icon className="text-white" size={25} />}
+        </button>
+      </div>
+    </>
+  );
+};
 
 export default FavoriteButton;
+

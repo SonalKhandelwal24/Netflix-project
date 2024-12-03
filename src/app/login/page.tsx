@@ -89,7 +89,7 @@ export default function Login() {
                                     type="password"
                                     value={password} />
                                 {variant === 'login' && (
-                                    <span className="text-white text-right hover:underline" onClick={() => router.push('/forgot-password')}>Forgot Password</span>
+                                    <span className="text-white text-right hover:underline cursor-pointer" onClick={() => router.push('/forgot-password')}>Forgot Password</span>
                                 )}
                             </div>
                             <button onClick={addUsers} className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">

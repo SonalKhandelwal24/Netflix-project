@@ -18,15 +18,15 @@ export async function GET(req: NextRequest, res: NextResponse) {
 
         // Count total movies
         const movieCount = await MovieData.countDocuments();
-        console.log("Total Movies:", movieCount);
+        // console.log("Total Movies:", movieCount);
 
         // Generate a random index
         const randomIndex = Math.floor(Math.random() * movieCount);
-        console.log("Random Index:", randomIndex);
+        // console.log("Random Index:", randomIndex);
 
         // Fetch the random movie
         const randomMovie = await MovieData.findOne().skip(randomIndex);
-        console.log("Fetched Movie:", randomMovie);
+        // console.log("Fetched Movie:", randomMovie);
 
         // Respond with the random movie
         if (randomMovie) {

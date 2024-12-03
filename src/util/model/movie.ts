@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 
 const movieSchema = new mongoose.Schema({
-  movieid: { type: Number },
+  movieid: { type: String },
   title: { type: String },
   description: { type: String },
-  videourl: { type: String },
+  videoUrl: { type: String },
   thumbnailUrl: { type: String },
   genre: { type: String },
   duration: { type: String },

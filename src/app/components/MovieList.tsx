@@ -3,7 +3,17 @@ import { isEmpty } from 'lodash';
 import MovieCard from './MovieCard';
 
 interface MovieListProps {
-    data: Record<string, any>[];
+    data: {
+        id: number;
+        thumbnailUrl: string;
+        videoUrl: string;
+        title: string;
+        description: string;
+        duration?: string;
+        genre?: string;
+        movieid: string;
+        seriesid: string;
+      };
     title: string;
 }
 
@@ -19,9 +29,9 @@ const MovieList : React.FC<MovieListProps> = ({data, title}) => {
                 <p className="text-white text-md md:text-xl lg:text-2xl font-semibold mb-4 ">
                     {title}
                 </p>
-                <div className="grid grid-cols-4 gap-2">
-                   {data.map((movie, index) => (
-                    <MovieCard key={index} data={movie} />
+                <div className="grid grid-cols-4 gap-x-3 gap-y-16 mb-20">
+                   {data.map((series, index) => (
+                    <MovieCard key={index} data={series} />
                    ))} 
                 </div>
             </div>
