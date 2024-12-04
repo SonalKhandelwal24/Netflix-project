@@ -2,17 +2,9 @@ import { jwtDecode } from "jwt-decode"; // Fix import (remove curly braces)
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import Cookies from 'js-cookie';
-
-interface AccountMenuProps {
-    visible?: boolean;
-}
 
 const AccountMenu = () => {
-    // if (!visible) {
-    //     return null;
-    // }
-
+    
     const router = useRouter();
     const [email, setEmail] = useState<string | null>(null); // Ensure `email` can be null
     const expiredToast = () =>

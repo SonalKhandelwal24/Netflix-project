@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
-import { BsPlayFill } from "react-icons/bs";
 import PlayButton from "./PlayButton";
 import OpenModal from "./OpenModal";
 

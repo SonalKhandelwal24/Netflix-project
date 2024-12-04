@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import {jwtDecode} from "jwt-decode";
 import { useState, useEffect } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function page() {

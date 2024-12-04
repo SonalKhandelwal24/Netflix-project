@@ -13,22 +13,17 @@ export async function connectToDatabase() {
 
 export async function GET(req: NextRequest, res: NextResponse) {
     try {
-        // Connect to MongoDB
         await connectToDatabase();
 
-        // Count total movies
         const movieCount = await MovieData.countDocuments();
         // console.log("Total Movies:", movieCount);
 
-        // Generate a random index
         const randomIndex = Math.floor(Math.random() * movieCount);
         // console.log("Random Index:", randomIndex);
 
-        // Fetch the random movie
         const randomMovie = await MovieData.findOne().skip(randomIndex);
-        // console.log("Fetched Movie:", randomMovie);
+        // console.log("Fetched Random Movie:", randomMovie);
 
-        // Respond with the random movie
         if (randomMovie) {
             return NextResponse.json({ success: true, result: randomMovie }, { status: 200 });
         } else {

@@ -1,9 +1,7 @@
 // MongoDB connection utility
 import mongoose from 'mongoose';
 import { MovieData } from "@/util/model/movie"; // Ensure your model is correctly defined
-import { NextRequest, NextResponse } from "next/server";
-import { NextApiRequest } from 'next';
-
+import {  NextResponse } from "next/server";
 
 export async function connectToDatabase() {
     if (!mongoose.connection.readyState) {
