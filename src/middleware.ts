@@ -26,5 +26,5 @@ export function middleware(req: NextRequest) {
 
 // Optional: Apply this middleware only on specific routes
 export const config = {
-  matcher: ['/', '/profiles', '/forgot-password', '/reset-password', '/send-email-link'], // Add your restricted routes here
+  matcher: ['/', '/profiles', '/forgot-password', '/reset-password', '/send-email-link', '/movies', '/series', '/my-list', '/browse-by-language', '/new-popular', '/redux' ], // Add your restricted routes here
 };

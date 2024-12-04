@@ -9,7 +9,7 @@ const initialState: RefreshState = {
   refresh: true,
 };
 
-const refreshSlice = createSlice({
+const refreshSlice = createSlice({ 
   name: "refresh",
   initialState,
   reducers: {

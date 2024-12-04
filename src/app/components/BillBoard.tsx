@@ -5,27 +5,19 @@ import PlayButton from "./PlayButton";
 import OpenModal from "./OpenModal";
 
 interface BillBoardProps {
-    movieid: string;
+    id: number;
     thumbnailUrl: string;
     videoUrl: string;
     title: string;
     description: string;
-    id: number;
-    data: {
-        id: number;
-        thumbnailUrl: string;
-        videoUrl: string;
-        title: string;
-        description: string;
-        duration?: string;
-        genre?: string;
-        movieid: string;
-        seriesid: string;
-      };
+    duration?: string;
+    genre?: string;
+    movieid: string;
+    seriesid: string;
 }
 
 const BillBoard = () => {
-    const [data, setData] = useState<BillBoardProps | null>(null);
+    const [data, setData] = useState<BillBoardProps | any>(null);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [isOpen, setIsOpen] = useState<boolean>(false);

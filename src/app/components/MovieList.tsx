@@ -4,6 +4,7 @@ import MovieCard from './MovieCard';
 
 interface MovieListProps {
     data: {
+        map(arg0: (series: any, index: any) => React.JSX.Element): React.ReactNode;
         id: number;
         thumbnailUrl: string;
         videoUrl: string;
@@ -31,7 +32,7 @@ const MovieList : React.FC<MovieListProps> = ({data, title}) => {
                 </p>
                 <div className="grid grid-cols-4 gap-x-3 gap-y-16 mb-20">
                    {data.map((series, index) => (
-                    <MovieCard key={index} data={series} />
+                    <MovieCard key={index} data={series} isFavorite={false} />
                    ))} 
                 </div>
             </div>

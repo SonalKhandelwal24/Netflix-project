@@ -108,7 +108,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
 
         const movies = await MovieData.find({ movieid: { $in: user.favoriteIds } });
         const series = await SeriesData.find({ seriesid: { $in: user.favoriteIds } });
-        console.log(user.favoriteIds);
+        console.log("Favorite Ids : " , user.favoriteIds);
         console.log("series :", series);
         console.log(series.map(serie => serie.seriesid)); 
 

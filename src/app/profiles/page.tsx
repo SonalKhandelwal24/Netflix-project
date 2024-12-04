@@ -35,7 +35,8 @@ export default function page() {
     }, [router])
     
     return(
-        <div className="flex justify-center items-center h-full">
+        <div className="relative h-full w-full bg-[url('/Images/profile.png')] bg-no-repeat bg-center bg-fixed bg-cover">
+        <div className="flex justify-center items-center h-full bg-black bg-opacity-70">
             <div className="flex flex-col">
                 <h1 className="text-white text-3xl md:text-6xl text-center">Who is watching?</h1>
                 <div className="flex text-center justify-center gap-8 mt-10">
@@ -44,9 +45,10 @@ export default function page() {
                         <div className="w-44 h-44 rounded-md border-2 border-transparent group-hover:cursor-pointer group-hover:border-white overflow-hidden">
                             <img src="/Images/user1.png" alt="User Profile" />
                         </div>                        
-                        <div className="mt-4 text-gray-400 md:text-2xl text-xl text-center group-hover:text-white">{email}</div>
+                        <div className="mt-4 text-white md:text-2xl text-xl text-center group-hover:text-gray-400">{email}</div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     )

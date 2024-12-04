@@ -12,10 +12,11 @@ interface MovieProps {
   description: string;
   genre: string;
   duration: string;
+  movieid : string,
 }
 
 export default function Films() {
-  const [movies, setMovies] = useState<MovieProps[]>([]);
+  const [movies, setMovies] = useState<MovieProps[] | any>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
