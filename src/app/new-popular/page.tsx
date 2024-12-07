@@ -13,8 +13,7 @@ interface NewPopularProps {
 }
 
 export default function NewPopular() {
-  const [films, setFilms] = useState<NewPopularProps[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [films, setFilms] = useState<NewPopularProps[] | any>([]);
 
   // movies data fetching
   useEffect(() => {
@@ -31,7 +30,6 @@ export default function NewPopular() {
         setFilms(allMovies.result || []);
       } catch (error: any) {
         console.error("Error fetching favorite list", error);
-        setError(error.message);
       }
     };
 

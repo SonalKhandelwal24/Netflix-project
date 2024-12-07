@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { ToastContainer } from "react-toastify";
 import OpenModal from "./OpenModal";
 import { BiChevronDown } from "react-icons/bi";
+import Image from "next/image";
 
 interface MovieCardProps {
   data: {
@@ -45,9 +46,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
   return (
     <div className="group bg-zinc-900 col-span relative h-[12vw]">
       {/* ThumbnailUrl image on the card */}
-      <img
-        className="pointer-cursor object-cover transition duration shadow-xl rounded-md delay-300 w-full h-[12vw]
-                group-hover:opacity-90 sm:group-hover:opacity-0"
+      <Image width={200} height={200} 
+        className="pointer-cursor object-cover transition duration shadow-xl rounded-md delay-300 w-full h-[12vw] group-hover:opacity-90 sm:group-hover:opacity-0"
         src={data.thumbnailUrl}
         alt="ThumbnailUrl"
       />
@@ -59,7 +59,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
       {/* Hover state */}
       <div
         className="opacity-0 absolute top-0 transition duration-200 z-10 invisible sm:visible delay-300 w-full scale-0 group-hover:scale-110 group-hover:-translate-y-[6vw] group-hover:translate-x-[2vw] group-hover:opacity-100">
-        <img
+        <Image  width={180} height={180} 
           className="cursor-pointer object-cover transition duration shadow-xl rounded-t-md w-full h-[12vw]"
           src={data.thumbnailUrl}
           alt="ThumbnailUrl"

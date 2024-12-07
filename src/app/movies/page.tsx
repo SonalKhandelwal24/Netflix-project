@@ -17,7 +17,6 @@ interface MovieProps {
 
 export default function Films() {
   const [movies, setMovies] = useState<MovieProps[] | any>([]);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchFilms = async () => {
@@ -33,7 +32,6 @@ export default function Films() {
         setMovies(allMovies.result || []);
       } catch (error: any) {
         console.error("Error fetching favorite list", error);
-        setError(error.message);
       }
     };
 

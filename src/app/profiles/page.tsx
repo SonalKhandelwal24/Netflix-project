@@ -4,8 +4,9 @@ import {jwtDecode} from "jwt-decode";
 import { useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Image from "next/image";
 
-export default function page() {
+export default function Profile() {
     
     const router = useRouter();
     const [email, setEmail] = useState('');
@@ -43,7 +44,7 @@ export default function page() {
                 {/* User 1 */}
                     <div className="group w-44 mx-auto" onClick={() => router.push('/')}>
                         <div className="w-44 h-44 rounded-md border-2 border-transparent group-hover:cursor-pointer group-hover:border-white overflow-hidden">
-                            <img src="/Images/user1.png" alt="User Profile" />
+                            <Image src="/Images/user1.png" alt="User Profile" width={176} height={176}  />
                         </div>                        
                         <div className="mt-4 text-white md:text-2xl text-xl text-center group-hover:text-gray-400">{email}</div>
                     </div>

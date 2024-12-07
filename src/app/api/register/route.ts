@@ -1,16 +1,9 @@
 // MongoDB connection utility
-import mongoose from 'mongoose';
+import { connectToDatabase } from "@/util/db";
 import { UserData } from "@/util/model/user";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'; 
-
-export async function connectToDatabase() {
-    if (!mongoose.connection.readyState) {
-        await mongoose.connect(process.env.MONGODB_URI as string);
-        console.log("Connected to MongoDB");
-    }
-}
 
 export async function GET() {
     try {
@@ -29,7 +22,7 @@ export async function GET() {
     }
 }
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
     try {
         await connectToDatabase();
 
@@ -58,7 +51,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         const token = jwt.sign({ id: newuser._id, email: newuser.email, username: newuser.username },
             process.env.ACCESS_TOKEN_SECRET ?? '', { expiresIn: '1h' });
 
-        const response = NextResponse.json({success: true, message: 'Register successful', token});
+        const response = NextResponse.json({success: true, message: 'Register successful', token, result});
 
         response.cookies.set('authToken', token, {
             httpOnly: true,

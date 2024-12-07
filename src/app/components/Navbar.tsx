@@ -1,10 +1,10 @@
 import { useState, useCallback, useEffect } from "react";
 import { BsChevronDown, BsSearch, BsBell } from "react-icons/bs";
-
 import MobileMenu from "./MobileMenu";
 import NavbarItem from "./NavbarItem";
 import AccountMenu from "./AccountMenu";
 import Link from "next/link";
+import Image from "next/image";
 
 const Navbar = () => {
 
@@ -49,7 +49,7 @@ const Navbar = () => {
             <div className={`px-4 md:px-16 py-6 flex flex-row items-center transition duration-500 ${showBackground ? 'bg-zinc-900 bg-opacity-90' : ''}`}>
 
                 {/* Netflix Logo */}
-                <img className="h-8 lg:h-12" src="/Images/Logo.png" alt="Logo" />
+                <Image className="h-8 lg:h-12" src="/Images/Logo.png" alt="Logo"  width={120} height={100} />
 
                 {/* Menu on Large screen */}
                 <div className="lg:flex flex-row gap-7 hidden ml-8">
@@ -95,7 +95,7 @@ const Navbar = () => {
 
                     <div onClick={toggleAccountMenu} className="flex flex-row items-center gap-2 cursor-pointer relative">
                         <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden">
-                            <img src="/Images/user1.png" alt="User" />
+                            <Image src="/Images/user1.png" alt="User"  width={40} height={40} />
                         </div>
                         <BsChevronDown className={`text-white ${showAccountMenu ? 'rotate-180' : 'rotate-0'}`} />
                         {showAccountMenu && <AccountMenu />}

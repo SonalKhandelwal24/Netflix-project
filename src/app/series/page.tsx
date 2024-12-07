@@ -13,8 +13,7 @@ interface SeriesProps {
 }
 
 export default function Series() {
-  const [series, setSeries] = useState<SeriesProps[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [series, setSeries] = useState<SeriesProps[] | any>([]);
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -29,8 +28,7 @@ export default function Series() {
         const allSeries = await response.json();
         setSeries(allSeries.result || []);
       } catch (error: any) {
-        console.error("Error fetching favorite list", error);
-        setError(error.message);
+        console.error("Error fetching favorite list", error.message);
       }
     };
 

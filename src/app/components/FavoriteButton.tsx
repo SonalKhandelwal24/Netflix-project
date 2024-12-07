@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { AiOutlinePlus, AiOutlineCheck } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
@@ -17,7 +17,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieid, seriesid }) =>
   const itemType = movieid ? "Movie" : "Series"; 
   const dispatch = useDispatch();
 
-  const fetchFavoriteStatus = async () => {
+  const fetchFavoriteStatus = useCallback(async () => {
     try {
       const response = await fetch("http://192.168.1.50:3000/api/favorite-status", {
         method: "POST",
@@ -38,16 +38,16 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieid, seriesid }) =>
         throw new Error("Invalid response structure from the API.");
       }
     } catch (error: any) {
-      console.error("Error fetching favorite status:", error.message);
+      console.error("Error fetching favorite status:", error.message);                                          
       setIsFavorite(false); 
     } finally {
       setLoading(false);
     }
-  };
+  }, [movieid, seriesid]);
 
   useEffect(() => {
     fetchFavoriteStatus();
-  }, [movieid, seriesid]);
+  }, [fetchFavoriteStatus]);
 
   const toggleFavorite = async () => {
     try {

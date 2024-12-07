@@ -13,8 +13,7 @@ interface BrowseByLanguageProps {
 }
 
 export default function BrowseByLanguage() {
-  const [films, setFilms] = useState<BrowseByLanguageProps[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [films, setFilms] = useState<BrowseByLanguageProps[] | any>([]);
 
   // movies data fetching
   useEffect(() => {
@@ -31,7 +30,6 @@ export default function BrowseByLanguage() {
         setFilms(allMovies.result || []);
       } catch (error: any) {
         console.error("Error fetching favorite list", error);
-        setError(error.message);
       }
     };
 

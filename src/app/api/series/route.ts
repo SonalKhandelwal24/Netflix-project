@@ -1,16 +1,9 @@
 // MongoDB connection utility
-import mongoose from 'mongoose';
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { SeriesData } from '@/util/model/series';
+import { connectToDatabase } from "@/util/db";
 
-export async function connectToDatabase() {
-    if (!mongoose.connection.readyState) {
-        await mongoose.connect(process.env.MONGODB_URI as string);
-        console.log("Connected to MongoDB");
-    }
-}
-
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET() {
     try {
         await connectToDatabase();
 

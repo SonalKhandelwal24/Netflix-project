@@ -2,8 +2,8 @@ import Link from "next/dist/client/link";
 import React from "react";
 
 interface NavbarItemProps {
-    label: String;
-    href: String;
+    label: string;
+    href: string;
 }
 
 const NavbarItem: React.FC<NavbarItemProps> = ({label, href}) => {

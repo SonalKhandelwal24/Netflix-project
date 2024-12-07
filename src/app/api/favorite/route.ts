@@ -1,26 +1,22 @@
-import mongoose from 'mongoose';
 import { NextRequest, NextResponse } from "next/server";
 import { MovieData } from '@/util/model/movie';
 import { UserData } from '@/util/model/user';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { SeriesData } from '@/util/model/series';
-
-async function connectToDatabase() {
-    if (!mongoose.connection.readyState) {
-        await mongoose.connect(process.env.MONGODB_URI as string);
-        console.log("Connected to MongoDB");
-    }
-}
+import { connectToDatabase } from '@/util/db';
 
 async function getUserFromToken(req: NextRequest) {
-    const token: any = req.cookies.get('authToken')?.value;
+    const token: string | undefined = req.cookies.get('authToken')?.value;
     if (!token) {
         throw new Error('Token is missing');
     }
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET as string) as JwtPayload;
-    if (!decoded?.email || Date.now() >= decoded.exp * 1000) {
+
+    // Check if the `exp` property exists and is valid
+    if (!decoded?.email || !decoded.exp || Date.now() >= decoded.exp * 1000) {
         throw new Error('Invalid or expired token');
     }
+    
     const user = await UserData.findOne({ email: decoded.email });
     if (!user) {
         throw new Error('User not found');
@@ -28,7 +24,7 @@ async function getUserFromToken(req: NextRequest) {
     return user;
 }
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
     try {
         await connectToDatabase();
 
@@ -66,7 +62,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     }
 }
 
-export async function DELETE(req: NextRequest, res: NextResponse) {
+export async function DELETE(req: NextRequest) {
     try {
         await connectToDatabase();
 
@@ -100,7 +96,7 @@ export async function DELETE(req: NextRequest, res: NextResponse) {
     }
 }
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
     try {
         await connectToDatabase();
 

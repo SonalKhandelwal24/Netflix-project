@@ -1,15 +1,8 @@
 // MongoDB connection utility
-import mongoose from 'mongoose';
-import { NextRequest, NextResponse } from "next/server";
+import { connectToDatabase } from "@/util/db";
+import { NextResponse } from "next/server";
 
-export async function connectToDatabase() {
-    if (!mongoose.connection.readyState) {
-        await mongoose.connect(process.env.MONGODB_URI as string);
-        console.log("Connected to MongoDB");
-    }
-}
-
-export async function POST(req: NextRequest) {
+export async function POST() {
     try {
         await connectToDatabase();
 

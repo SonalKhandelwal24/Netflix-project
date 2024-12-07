@@ -20,14 +20,14 @@ interface OpenModalProps {
 }
 
 const OpenModal: React.FC<OpenModalProps> = ({ data, visible, onClose }) => {
-  // Don't render if not visible
-  if (!visible) {
-    return null;
-  }
 
+  // Always call useCallback, regardless of visibility
   const handleClose = useCallback(() => {
     onClose();
   }, [onClose]);
+
+  // If not visible, return null outside the component logic to ensure hooks aren't conditionally used
+  if (!visible) return null;
 
   return (
     <div className="z-50 transition duration-300 bg-black bg-opacity-80 flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0">

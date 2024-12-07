@@ -1,14 +1,7 @@
 import { UserData } from "@/util/model/user";
-import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 import jwt from 'jsonwebtoken'; // For generating a token (optional, but recommended)
-
-export async function connectToDatabase() {
-    if (!mongoose.connection.readyState) {
-        await mongoose.connect(process.env.MONGODB_URI as string);
-        console.log("Connected to MongoDB");
-    }
-}
+import { connectToDatabase } from "@/util/db";
 
 export async function POST(req: NextRequest) {
 

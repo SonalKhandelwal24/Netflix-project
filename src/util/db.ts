@@ -1,2 +1,8 @@
-export const connectToDatabase = `mongodb+srv://sonalkhandelwal:mongodb@cluster0.7taeczq.mongodb.net/Netflix?retryWrites=true&w=majority&appName=Cluster0`
+import mongoose from "mongoose";
 
+export async function connectToDatabase() {
+    if (!mongoose.connection.readyState) {
+        await mongoose.connect(process.env.MONGODB_URI as string);
+        console.log("Connected to MongoDB");
+    }
+}

@@ -1,22 +1,15 @@
 // MongoDB connection utility
-import mongoose from 'mongoose';
 import { UserData } from "@/util/model/user";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from 'bcrypt'; // Make sure to install bcryptjs
 import jwt from 'jsonwebtoken'; // For generating a token (optional, but recommended)
-
-export async function connectToDatabase() {
-    if (!mongoose.connection.readyState) {
-        await mongoose.connect(process.env.MONGODB_URI as string);
-        console.log("Connected to MongoDB");
-    }
-}
+import { connectToDatabase } from '@/util/db';
 
 function createAccessToken(userId: string, userEmail: string, userName: string) {
     return jwt.sign({ id: userId, email: userEmail, username: userName}, process.env.ACCESS_TOKEN_SECRET || "", { expiresIn: '1h' });
 }
 
-export async function POST(req: NextRequest, res: NextResponse) 
+export async function POST(req: NextRequest) 
 {
         try {
             await connectToDatabase();

@@ -1,14 +1,8 @@
 import { UserData } from "@/util/model/user";
 import bcrypt from "bcrypt";
 import { NextRequest, NextResponse } from "next/server";
-import mongoose from "mongoose";
+import { connectToDatabase } from "@/util/db";
 import jwt, { JwtPayload } from 'jsonwebtoken';
-
-export async function connectToDatabase() {
-    if (!mongoose.connection.readyState) {
-        await mongoose.connect(process.env.MONGODB_URI as string);
-    }
-}
 
 export async function POST(req: NextRequest) {
     await connectToDatabase();

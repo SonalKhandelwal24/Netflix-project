@@ -4,13 +4,13 @@ import Input from "../components/Input";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Image from "next/image";
 
 export default function Login() {
 
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
     const [variant, setVariant] = useState('login');
     const router = useRouter();
 
@@ -24,7 +24,7 @@ export default function Login() {
 
     const addUsers = async () => {
         const endpoint = variant === 'login' ? 'http://192.168.1.50:3000/api/login' : 'http://192.168.1.50:3000/api/register';
-        let response = await fetch(endpoint, {
+        const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ export default function Login() {
             body: JSON.stringify({ username, email, password })
         });
 
-        let data = await response.json();
+        const data = await response.json();
         console.log(data);
         if (data.success) {
             setUsername('');
@@ -60,7 +60,7 @@ export default function Login() {
             <div className="relative h-full w-full bg-[url('/Images/Image.png')] bg-no-repeat bg-center bg-fixed bg-cover">
                 <div className="bg-black w-full h-full lg:bg-opacity-50 md:bg-opacity-50 sm:bg-opacity-50">
                     <nav className="px-16 py-5 lg:ml-40">
-                        <img src="/Images/Logo.png" alt="Logo" className="h-20" />
+                        <Image src="/Images/Logo.png" alt="Logo" className="h-20" width={180} height={80} />
                     </nav>
                     <div className="flex justify-center">
                         <div className="bg-black bg-opacity-80 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md md:w-3/5 rounded-md w-full">

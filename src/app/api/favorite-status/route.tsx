@@ -2,7 +2,7 @@ import { UserData } from "@/util/model/user";
 import { NextRequest, NextResponse } from "next/server";
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
     const { movieid, seriesid } = await req.json();
     const token = req.cookies.get("authToken")?.value;
 

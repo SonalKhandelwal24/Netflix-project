@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
-import cookie from 'cookie';
+import * as cookie from 'cookie';
 
 export function middleware(req: NextRequest) {
   // Parse cookies from the request

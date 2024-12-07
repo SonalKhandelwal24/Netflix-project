@@ -32,6 +32,7 @@ export default function WatchPage({ params }: ParamProps) {
                 setMovie(data.result);
             } catch (error: any) {
                 console.error("Error fetching movie data:", error.message);
+                console.log(error);
             } finally {
                 setLoading(false);
             }
