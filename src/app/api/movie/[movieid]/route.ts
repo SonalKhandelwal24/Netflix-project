@@ -7,11 +7,11 @@ interface Params {
   movieid: string;
 }
 
-export async function GET(req: Request, context: { params: { movieid: string } }) {
+export async function GET(req: Request, context: { params: Promise<{movieid: string }> }) {
   try {
     await connectToDatabase();
 
-    const { movieid } = context.params;
+    const { movieid } = (await context.params);
     if (!movieid) {
       return NextResponse.json({ success: false, message: "Movie ID is required" }, { status: 400 });
     }

@@ -3,13 +3,12 @@ import { NextResponse } from "next/server";
 import { SeriesData } from '@/util/model/series';
 import { connectToDatabase } from "@/util/db";
 
-export async function GET(req: Request, { params }: { params: { seriesid: string }}) {
+
+export async function GET(req: Request, context: { params: Promise<{seriesid: string }> }) {
     try {
       await connectToDatabase();
   
-      const { seriesid } = params; 
-        console.log("seriesid:", seriesid);
-
+      const { seriesid } = (await context.params);
         if (!seriesid) {
             return NextResponse.json({ success: false, message: "Series ID is required" }, { status: 400 });
         }

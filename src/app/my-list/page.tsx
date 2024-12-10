@@ -20,7 +20,7 @@ export default function MyList() {
   const [favorites, setFavorites] = useState<{ id: string, type: 'movie' | 'series' }[]>([]);
   const [series, setSeries] = useState<MyListProps[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [favoriteDetails, setFavoriteDetails] = useState<MyListProps[]>([]);
+  const [favoriteDetails, setFavoriteDetails] = useState<MyListProps[] | any>([]);
 
   // Fetch movies data
   useEffect(() => {
