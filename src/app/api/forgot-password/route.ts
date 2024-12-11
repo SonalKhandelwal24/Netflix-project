@@ -1,6 +1,6 @@
 import { UserData } from "@/util/model/user";
 import { NextRequest, NextResponse } from "next/server";
-import jwt from 'jsonwebtoken'; // For generating a token (optional, but recommended)
+import jwt from 'jsonwebtoken'; 
 import { connectToDatabase } from "@/util/db";
 
 export async function POST(req: NextRequest) {
@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ success: false, message: "User not found"}, { status: 404 });
         }
 
-        const resetToken =  jwt.sign({ id: user._id, email:user.email }, process.env.ACCESS_TOKEN_SECRET ?? '', { expiresIn: '1h' });
+        const resetToken = jwt.sign({ id: user._id, email:user.email }, process.env.ACCESS_TOKEN_SECRET ?? '', { expiresIn: '1h' });
         
         const resetLink = `token=${resetToken}`;
         return NextResponse.json({ success: true, message: 'Reset link generated', resetLink}, { status: 200 });
