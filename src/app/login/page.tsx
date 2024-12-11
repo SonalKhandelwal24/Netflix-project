@@ -14,8 +14,9 @@ export default function Login() {
     const [variant, setVariant] = useState('login');
     const router = useRouter();
 
-    console.log("process.env.NEXT_PUBLIC_BASE_URL",process.env.NEXT_PUBLIC_BASE_URL);
-    
+    console.log("process.env.NEXT_PUBLIC_BASE_URL", process.env.NEXT_PUBLIC_BASE_URL);
+
+    console.log("NEXT_PUBLIC_BASE_URL", process.env.NEXT_PUBLIC_BASE_URL);
     const toggleVariant = useCallback(() => {
         setVariant((currenrtVariant) => currenrtVariant === 'login' ? 'register' : 'login');
     }, [])
@@ -25,7 +26,9 @@ export default function Login() {
     const unsuccessful = () => toast.error("Wrong Email and Pasword", { autoClose: 5000, closeOnClick: true, pauseOnHover: true });
 
     const addUsers = async () => {
+
         const endpoint = `${process.env.NEXT_PUBLIC_BASE_URL}${variant === 'login' ? '/api/login' : '/api/register'}`;
+        // const endpoint = `/api/login`;
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
