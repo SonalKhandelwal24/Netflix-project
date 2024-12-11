@@ -23,7 +23,7 @@ export default function Login() {
     const unsuccessful = () => toast.error("Wrong Email and Pasword", { autoClose: 5000, closeOnClick: true, pauseOnHover: true });
 
     const addUsers = async () => {
-        const endpoint = `${process.env.BASE_URL}${variant === 'login' ? '/api/login' : '/api/register'}`;
+        const endpoint = variant === 'login' ? 'https://netflix-project-ci98.vercel.app/api/login' : 'https://netflix-project-ci98.vercel.app/api/register';
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
