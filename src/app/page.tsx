@@ -28,7 +28,7 @@ export default function Home() {
 
   const fetchMovies = async () => {
     try {
-      const response = await fetch('http://192.168.1.50:3000/api/movie');
+      const response = await fetch(process.env.BASE_URL + '/api/movie');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -42,7 +42,7 @@ export default function Home() {
 
   const fetchSeries = async () => {
     try {
-      const response = await fetch('http://192.168.1.50:3000/api/series');
+      const response = await fetch(process.env.BASE_URL + '/api/series');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -56,7 +56,7 @@ export default function Home() {
   
   const fetchFavorites = async () => {
     try {
-      const response = await fetch('http://192.168.1.50:3000/api/favorite');
+      const response = await fetch(process.env.BASE_URL + '/api/favorite');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

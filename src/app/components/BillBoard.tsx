@@ -34,7 +34,7 @@ const BillBoard = () => {
     useEffect(() => {
         const fetchMovie = async () => {
             try {
-                const response = await fetch('http://192.168.1.50:3000/api/random-movie');
+                const response = await fetch(process.env.BASE_URL + '/api/random-movie');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }

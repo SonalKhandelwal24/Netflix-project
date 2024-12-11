@@ -25,7 +25,7 @@ export default function ResetPassword() {
             return;
         }
         
-        const response = await fetch('http://192.168.1.50:3000/api/reset-password', {
+        const response = await fetch(process.env.BASE_URL + '/api/reset-password', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

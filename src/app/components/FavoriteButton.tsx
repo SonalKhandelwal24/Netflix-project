@@ -19,7 +19,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieid, seriesid }) =>
 
   const fetchFavoriteStatus = useCallback(async () => {
     try {
-      const response = await fetch("http://192.168.1.50:3000/api/favorite-status", {
+      const response = await fetch(process.env.BASE_URL + "/api/favorite-status", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieid, seriesid }) =>
   const toggleFavorite = async () => {
     try {
       const method = isFavorite ? "DELETE" : "POST";
-      const response = await fetch("http://192.168.1.50:3000/api/favorite", {
+      const response = await fetch(process.env.BASE_URL + "/api/favorite", {
         method,
         headers: {
           "Content-Type": "application/json",

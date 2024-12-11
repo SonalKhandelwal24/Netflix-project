@@ -23,7 +23,7 @@ export default function WatchPage({ params }: ParamProps) {
                 const resolvedParams = await params;
                 const { seriesid } = resolvedParams;
 
-                const response = await fetch(`http://192.168.1.50:3000/api/series/${seriesid}`);
+                const response = await fetch(process.env.BASE_URL + `/api/series/${seriesid}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
