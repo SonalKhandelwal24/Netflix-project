@@ -43,7 +43,7 @@ const AccountMenu = () => {
 
     const signOut = async () => {
         try {
-            const response = await fetch(process.env.BASE_URL + '/api/logout', {
+            const response = await fetch(`${process.env.BASE_URL}/api/logout`, {
                 method: "POST"
             });
             const data = await response.json();

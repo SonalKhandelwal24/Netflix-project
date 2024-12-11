@@ -18,7 +18,7 @@ export default function ForgotPassword() {
 
     const handleResetRequest = async () => {
 
-        const response = await fetch(process.env.BASE_URL + '/api/forgot-password', {
+        const response = await fetch(`${process.env.BASE_URL}/api/forgot-password`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

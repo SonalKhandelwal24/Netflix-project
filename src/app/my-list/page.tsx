@@ -26,7 +26,7 @@ export default function MyList() {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await fetch(process.env.BASE_URL + '/api/movie');
+        const response = await fetch(`${process.env.BASE_URL}/api/movie`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -41,7 +41,7 @@ export default function MyList() {
     // Fetch series data
     const fetchSeries = async () => {
       try {
-        const response = await fetch(process.env.BASE_URL + '/api/series');
+        const response = await fetch(`${process.env.BASE_URL}/api/series`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -56,7 +56,7 @@ export default function MyList() {
     // Fetch favorites data
     const fetchFavorites = async () => {
       try {
-        const response = await fetch(process.env.BASE_URL + '/api/favorite');
+        const response = await fetch(`${process.env.BASE_URL}/api/favorite`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

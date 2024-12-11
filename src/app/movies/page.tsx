@@ -24,7 +24,7 @@ export default function Films() {
         const token = localStorage.getItem('authtoken');
         if (!token) throw new Error("Authentication token is missing.");
 
-        const response = await fetch(process.env.BASE_URL + '/api/movie');
+        const response = await fetch(`${process.env.BASE_URL}/api/movie`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

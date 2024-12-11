@@ -24,7 +24,7 @@ export default function WatchPage({ params }: ParamProps) {
                 const resolvedParams = await params;
                 const { movieid } = resolvedParams;
 
-                const response = await fetch(process.env.BASE_URL + `/api/movie/${movieid}`);
+                const response = await fetch(`${process.env.BASE_URL}/api/movie/${movieid}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
