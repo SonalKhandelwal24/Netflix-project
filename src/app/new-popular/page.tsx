@@ -22,7 +22,7 @@ export default function NewPopular() {
         const token = localStorage.getItem('authtoken');
         if (!token) throw new Error("Authentication token is missing.");
 
-        const response = await fetch(`${process.env.BASE_URL}/api/movie`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/movie`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

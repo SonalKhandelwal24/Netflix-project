@@ -21,7 +21,7 @@ export default function Series() {
         const token = localStorage.getItem('authtoken');
         if (!token) throw new Error("Authentication token is missing.");
 
-        const response = await fetch(`${process.env.BASE_URL}/api/series`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/series`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
