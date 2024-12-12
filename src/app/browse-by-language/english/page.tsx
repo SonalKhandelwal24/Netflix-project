@@ -3,6 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import Navbar from '@/app/components/Navbar';
 import MovieList from '@/app/components/MovieList';
+import { ToastContainer } from 'react-toastify';
 
 interface BrowseByLanguageProps {
   id: number;
@@ -37,7 +38,8 @@ export default function BrowseByLanguage() {
   }, [])
 
   return (
-    <>
+    <>      
+    <ToastContainer />
       <Navbar />
       <div className="pt-32">
         <MovieList title="Hollywood Movies" data={series} />

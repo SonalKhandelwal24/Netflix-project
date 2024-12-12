@@ -3,6 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import MovieList from '../components/MovieList';
+import { ToastContainer } from 'react-toastify';
 
 interface SeriesProps {
   id: number;
@@ -37,6 +38,7 @@ export default function Series() {
 
   return (
     <>
+      <ToastContainer />
       <Navbar />
       <div className="pt-32">
         <MovieList title="Web Series" data={series} />

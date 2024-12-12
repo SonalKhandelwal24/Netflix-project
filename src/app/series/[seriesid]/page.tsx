@@ -61,8 +61,7 @@ export default function WatchPage({ params }: ParamProps) {
         <div className="h-screen w-screen bg-black">
             <nav
                 onClick={() => router.push("/")}
-                className="fixed w-full p-4 z-10 flex flex-row items-center gap-8 bg-black bg-opacity-70"
-            >
+                className="fixed w-full p-4 z-10 flex flex-row items-center gap-8 bg-black bg-opacity-70">
                 <AiOutlineArrowLeft className="text-white" size={30} />
                 <p className="text-white text-lg md:text-3xl font-semibold">
                     <span className="font-light">Watching: </span>

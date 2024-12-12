@@ -45,6 +45,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
 
   return (
     <div className="group bg-zinc-900 col-span relative h-[12vw]">
+      {/* <ToastContainer /> */}
       {/* ThumbnailUrl image on the card */}
       <Image width={200} height={200} 
         className="pointer-cursor object-cover transition duration shadow-xl rounded-md delay-300 w-full h-[12vw] group-hover:opacity-90 sm:group-hover:opacity-0"
@@ -82,7 +83,6 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
             </div>
           </div>
 
-          <ToastContainer />
           <p className="text-green-400 font-semibold mt-4">
             New <span className="text-white">2023</span>
           </p>

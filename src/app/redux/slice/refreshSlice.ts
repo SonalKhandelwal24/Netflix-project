@@ -6,7 +6,7 @@ interface RefreshState {
 }
 
 const initialState: RefreshState = {
-  refresh: true,
+  refresh: false,
 };
 
 const refreshSlice = createSlice({ 

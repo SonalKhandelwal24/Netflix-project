@@ -3,6 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import MovieList from '../components/MovieList';
+import { ToastContainer } from 'react-toastify';
 
 interface MyListProps {
   type: string;
@@ -56,7 +57,7 @@ export default function MyList() {
     // Fetch favorites data
     const fetchFavorites = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URLL}/api/favorite`);
+        const response = await fetch(`http://localhost:3000/api/favorite`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -108,6 +109,7 @@ export default function MyList() {
 
   return (
     <>
+    < ToastContainer />
       <Navbar />
       <div className="pt-32">
         {error && <p className="text-center text-red-500">{error}</p>}

@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+import { ToastContainer } from "react-toastify";
 
 interface WatchProps {
     title: string;
@@ -59,10 +60,10 @@ export default function WatchPage({ params }: ParamProps) {
 
     return (
         <div className="h-screen w-screen bg-black">
+            < ToastContainer />
             <nav
                 onClick={() => router.push("/")}
-                className="fixed w-full p-4 z-10 flex flex-row items-center gap-8 bg-black bg-opacity-70"
-            >
+                className="fixed w-full p-4 z-10 flex flex-row items-center gap-8 bg-black bg-opacity-70">
                 <AiOutlineArrowLeft className="text-white" size={30} />
                 <p className="text-white text-lg md:text-3xl font-semibold">
                     <span className="font-light">Watching: </span>

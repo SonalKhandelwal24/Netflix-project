@@ -3,6 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import MovieList from '../components/MovieList';
+import { ToastContainer } from 'react-toastify';
 
 interface MovieProps {
   id: number;
@@ -40,6 +41,7 @@ export default function Films() {
 
   return (
     <>
+      <ToastContainer />
       <Navbar />
       <div className="pt-32 ">
         <MovieList title="All Films" data={movies} />

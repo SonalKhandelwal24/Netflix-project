@@ -3,6 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import MovieList from '../components/MovieList';
+import { ToastContainer } from 'react-toastify';
 
 interface NewPopularProps {
   id: number;
@@ -38,6 +39,7 @@ export default function NewPopular() {
 
   return (
     <>
+      <ToastContainer />
       <Navbar />
       <div className="pt-32 ">
         <MovieList title="New & Popular" data={films} />

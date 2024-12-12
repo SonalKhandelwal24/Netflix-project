@@ -6,6 +6,7 @@ import MovieList from './components/MovieList';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from './redux/store';
+import { ToastContainer } from 'react-toastify';
 
 interface Movie {
   type: string;
@@ -109,6 +110,7 @@ export default function Home() {
 
   return (
     <>
+    <ToastContainer position='top-right'  />
       <Navbar />
       <BillBoard />
       <div className="pb-40">

@@ -61,13 +61,13 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieid, seriesid }) =>
       });
 
       if (!response.ok) {
-        throw new Error("Failed to update favorites.");
+        throw new Error("Movie already in favorites.");
       }
 
       setIsFavorite(!isFavorite);
       toast.success(
         `${itemType} ${!isFavorite ? "added to" : "removed from"} favorites!`,
-        { autoClose: 3000, closeOnClick: true, pauseOnHover: true }
+        { autoClose: 5000, closeOnClick: true, pauseOnHover: true }
       );
       dispatch(toggleRefresh());
     } catch (error: any) {

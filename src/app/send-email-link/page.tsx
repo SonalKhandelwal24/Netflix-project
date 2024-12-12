@@ -8,12 +8,9 @@ function SearchBarFallback() {
 export default function Page() {
   return (
     <>
-      <nav>
         <Suspense fallback={<SearchBarFallback />}>
           <SendEmailLink />
         </Suspense>
-      </nav>
-      <h1>Dashboard</h1>
     </>
   )
 }
