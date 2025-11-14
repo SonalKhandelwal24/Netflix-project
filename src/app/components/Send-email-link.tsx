@@ -10,7 +10,7 @@ export default function SendEmailLink() {
     const resetLink = searchParams.get('token');
 
     return (
-        <div className="relative h-full w-full bg-[url('/Images/Image.png')] bg-no-repeat bg-center bg-fixed bg-cover">
+        <div className="relative h-full w-full bg-[url('/Images/profile.png')] bg-no-repeat bg-center bg-fixed bg-cover">
             <div className="bg-black w-full h-full lg:bg-opacity-50 md:bg-opacity-50 sm:bg-opacity-50">
                 <nav className="px-16 py-5 lg:ml-40">
                     <Image src="/Images/Logo.png" alt="Logo" className="h-20"  width={180} height={80} />
