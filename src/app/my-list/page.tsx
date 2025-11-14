@@ -57,7 +57,7 @@ export default function MyList() {
     // Fetch favorites data
     const fetchFavorites = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/favorite`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/favorite`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
